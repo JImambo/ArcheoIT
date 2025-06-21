@@ -2,6 +2,7 @@
 <?php
 session_start();
 include 'db.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,8 +16,7 @@ include 'db.php';
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Barre de navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="index.php">Association Archéo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -28,6 +28,7 @@ include 'db.php';
           <li class="nav-item"><a class="nav-link" href="chantiers.php">Chantiers</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
           <li class="nav-item"><a class="nav-link" href="inscription.php">Inscription</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">Connexion</a></li>
           <?php if (isset($_SESSION['user'])): ?>
             <li class="nav-item"><a class="nav-link text-warning" href="#">Bienvenue <?= htmlspecialchars($_SESSION['user']) ?></a></li>
             <li class="nav-item"><a class="nav-link" href="logout.php">Déconnexion</a></li>
@@ -36,7 +37,6 @@ include 'db.php';
       </div>
     </div>
   </nav>
-
   <!-- Contenu principal -->
   <div class="container mt-5">
     <h1 class="mb-4 text-center">Actualités de l'association</h1>
@@ -46,7 +46,7 @@ include 'db.php';
       $query = $pdo->query("SELECT * FROM actualites ORDER BY date DESC $limit");
       while($actu = $query->fetch()) {
         echo '<div class="card mb-4">';
-        echo '<img src="uploads/'.htmlspecialchars($actu['image']).'" class="card-img-top" alt="Image actu">';
+        echo '<img src=".images/'.htmlspecialchars($actu['image']).'" class="card-img-top" alt="Image actu">';
         echo '<div class="card-body">';
         echo '<h5 class="card-title">'.htmlspecialchars($actu['titre']).'</h5>';
         echo '<p class="card-text">'.nl2br(htmlspecialchars($actu['contenu'])).'</p>';
@@ -56,7 +56,9 @@ include 'db.php';
     ?>
     <?php if (!isset($_SESSION['user'])): ?>
       <div class="alert alert-info text-center">
+        <a href="login.php" class="alert-link stretched-link">
         Connectez-vous pour voir toutes les actualités de l'association.
+        </a>
       </div>
     <?php endif; ?>
   </div>
