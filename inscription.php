@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Envoi du mail
         $subject = 'Mot de passe – Association Archéo';
-        $message = "Bonjour $prenom,\n\nVotre mot de passe : $pwd\n\nConnectez-vous ici : https://monsite.com/index.php";
-        $headers = "From: no-reply@monsite.com\r\n";
+        $message = "Bonjour $prenom,\n\nVotre mot de passe : $pwd\n\nConnectez-vous ici : http://archeoit.com/index.php";
+        $headers = "From: no-reply@archeoit.com\r\n";
 
         if (mail($email, $subject, $message, $headers)) {
             header('Location: index.php?msg=mail-envoye');

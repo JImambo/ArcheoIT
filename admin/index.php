@@ -10,6 +10,7 @@ include 'header_admin.php';
 // Stats simples
 $nbActualites = $pdo->query("SELECT COUNT(*) FROM actualites")->fetchColumn();
 $nbChantiers = $pdo->query("SELECT COUNT(*) FROM chantiers")->fetchColumn();
+$nbUsers = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 ?>
 <h1>Tableau de bord</h1>
 <div class="row">
@@ -26,11 +27,19 @@ $nbChantiers = $pdo->query("SELECT COUNT(*) FROM chantiers")->fetchColumn();
       <p class="fs-2"><?= $nbChantiers ?></p>
       <a href="gerer_chantiers.php" class="btn btn-light">Gérer</a>
     </div>
-    <div class="col-md-4 mb-4">
+  </div>
+  <div class="col-md-6 mb-4">
     <div class="card text-bg-secondary p-3">
       <h3>Agenda</h3>
-      <p class="fs-2">Voir</p>
+      <p class="fs-2"><?= $nbChantiers ?></p>
       <a href="agenda.php" class="btn btn-light">Consulter</a>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">  
+    <div class="card text-bg-secondary p-3">
+      <h3>Gestion des Comptes</h3>
+      <p class="fs-2"><?= $nbUsers ?></p>
+      <a href="gerer_users.php" class="btn btn-light">Gérer</a>
     </div>
   </div>
 </div>

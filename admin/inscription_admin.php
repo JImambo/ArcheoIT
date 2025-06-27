@@ -1,12 +1,13 @@
 <?php
-session_start();
+/* session_start(); */
 include '../db.php';
 
-/* if (!isset($_SESSION['admin'])) {
-  header('Location: login.php'); // Seuls les admins peuvent inscrire d'autres admins
-  exit();
-}
- */
+// Vérification accès admin
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header('Location: login_admin.php');
+    exit;
+  }
+  
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nom = $_POST['nom'];
   $prenom = $_POST['prenom'];

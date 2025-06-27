@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt->execute([$_POST['email']]);
   $user = $stmt->fetch();
   if($user && password_verify($pwd, $user['password'])){
-    $_SESSION['user'] = $user['prenom'];
+    $_SESSION['user'] = $user;
     header('Location: index.php'); 
     exit;
   } else $error = 'Email ou mot de passe invalide';
